@@ -33,9 +33,9 @@
 // Start scanning for devices
 - (void) scan
 {
-    // Scan for all available candles
+    NSArray *services = @[[CBUUID UUIDWithString:@"BD0F6577-4A38-4D71-AF1B-4E8F57708080"]];
     if(![_centralManager isScanning]) {
-        [_centralManager scanForPeripheralsWithServices:nil options:nil];
+        [_centralManager scanForPeripheralsWithServices:services options:nil];
     }
 }
 
@@ -96,7 +96,6 @@
     [_peripherals addObject:peripheral];
     
     [central connectPeripheral:peripheral options:nil];
-    
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
@@ -148,25 +147,8 @@ didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic
 // Invoked when characteristic are read or have changed
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
-    NSLog(@"Characteristic: %@ %@", characteristic.UUID.UUIDString, characteristic.value);
-    
-    //    For 0xfffc                Sat    R     G     B
-    //    unsigned char bytes[] = { 0x00, 0xff, 0x00, 0x00 };
-    
-    // For 0xffb              Sat    R     G     B    Mode   MBZ  Speed  MBZ
-    unsigned char bytes[] = { 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x15, 0x00 };
-    NSData *data = [NSData dataWithBytes:bytes length:sizeof(bytes)];
-    
-//    if(![data isEqual:characteristic.value])
-//    {
-//        NSLog(@"Setting value");
-//        [peripheral writeValue:data forCharacteristic:characteristic
-//                          type:CBCharacteristicWriteWithoutResponse];
-//
-//        [NSThread sleepForTimeInterval:0.2058f];
-//    }
-    [_centralManager cancelPeripheralConnection:peripheral];
-    
+    NSString *value = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+    NSLog(@"Characteristic: %@ %@: %@", characteristic.UUID.UUIDString, peripheral.name, value);
 }
 
 // Invoked when you read RSSI
@@ -181,4 +163,3 @@ didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic
 }
 
 @end
-
