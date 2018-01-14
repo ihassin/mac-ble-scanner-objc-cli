@@ -76,8 +76,6 @@
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    CBUUID *service = [advertisementData valueForKey:@"kCBAdvDataServiceUUIDs"][0];
-    
     if([_peripherals containsObject:peripheral])
     {
         return;
@@ -87,6 +85,8 @@
     
     if(!isConnectable)
     {
+        CBUUID *service = [advertisementData valueForKey:@"kCBAdvDataServiceUUIDs"][0];
+        
         NSLog(@"Skipping device %@ as it's not accepting connections.", service.UUIDString);
         return;
     }
