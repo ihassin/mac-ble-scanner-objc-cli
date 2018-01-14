@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6A25866F200BFB890025478F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A25866E200BFB890025478F /* main.m */; };
+		6A258677200BFBFC0025478F /* manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A258676200BFBFC0025478F /* manager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		6A25866B200BFB890025478F /* mac-ble-scanner-objc-cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "mac-ble-scanner-objc-cli"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A25866E200BFB890025478F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6A258675200BFBD50025478F /* manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = manager.h; sourceTree = "<group>"; };
+		6A258676200BFBFC0025478F /* manager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = manager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				6A25866E200BFB890025478F /* main.m */,
+				6A258675200BFBD50025478F /* manager.h */,
+				6A258676200BFBFC0025478F /* manager.m */,
 			);
 			path = "mac-ble-scanner-objc-cli";
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A25866F200BFB890025478F /* main.m in Sources */,
+				6A258677200BFBFC0025478F /* manager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
