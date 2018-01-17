@@ -33,10 +33,12 @@
 // Start scanning for devices
 - (void) scan
 {
-    NSArray *services = @[[CBUUID UUIDWithString:@"BD0F6577-4A38-4D71-AF1B-4E8F57708080"]];
-    if(![_centralManager isScanning]) {
-        [_centralManager scanForPeripheralsWithServices:services options:nil];
+    if([_centralManager isScanning]) {
+        return;
     }
+    
+    NSArray *services = @[[CBUUID UUIDWithString:@"BD0F6577-4A38-4D71-AF1B-4E8F57708080"]];
+        [_centralManager scanForPeripheralsWithServices:services options:nil];
 }
 
 // Method called whenever the BLE state changes.
